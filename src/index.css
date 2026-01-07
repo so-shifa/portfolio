@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base resets */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-body overflow-x-hidden;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-light-bg dark:bg-dark-bg;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-light-primary dark:bg-dark-primary rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-light-secondary dark:bg-dark-secondary;
+}
+
+/* Glassmorphism */
+@layer components {
+  .glass-light {
+    @apply bg-white/40 backdrop-blur-md border border-white/60;
+  }
+
+  .glass-dark {
+    @apply bg-black/40 backdrop-blur-md border border-white/10;
+  }
+
+  .glass {
+    @apply bg-light-bg/40 dark:bg-dark-bg/40 backdrop-blur-md
+           border border-light-primary/20 dark:border-dark-primary/20;
+  }
+}
+
+/* Disable cursor (custom cursor use-case) */
+a,
+button,
+input,
+textarea,
+select {
+  cursor: none;
+}
+
+/* Selection */
+::selection {
+  @apply bg-light-accent dark:bg-dark-accent
+         text-light-bg dark:text-dark-bg;
+}
+
+/* Smooth theme transitions */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}
