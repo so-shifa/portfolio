@@ -8,7 +8,7 @@ const About = () => {
   const [parallaxRef, offset] = useParallax(0.3);
 
   const stats = [
-    { number: "2+", label: "Years Experience" },
+    { number: "1+", label: "Years Experience" },
     { number: "10+", label: "Projects Built" },
     { number: "100%", label: "Client Satisfaction" },
   ];
@@ -54,8 +54,8 @@ const About = () => {
             </p>
 
             <p className="text-lg text-light-textSecondary dark:text-dark-textSecondary leading-relaxed">
-              Currently interning at ROBOWAVES, I work on real-time dashboards,
-              REST API integration, and reusable UI components within Agile
+              I have experience working on real-time dashboards, REST API
+              integration, and building reusable UI components within Agile
               teams. I believe in writing clean, scalable code that makes a
               difference.
             </p>

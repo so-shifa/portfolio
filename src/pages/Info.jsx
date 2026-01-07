@@ -70,13 +70,13 @@ const Info = () => {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <motion.div
           style={{ scale }}
-          className="max-w-4xl mx-auto px-6 text-center"
+          className="max-w-4xl mx-auto px-6 text-center "
         >
           <motion.h1
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-6xl md:text-8xl font-bold mb-8 bg-gradient-to-r from-light-primary via-light-secondary to-light-accent dark:from-dark-primary dark:via-dark-secondary dark:to-dark-accent bg-clip-text text-transparent"
+            className="text-6xl md:text-8xl font-bold pb-5 mb-8 bg-gradient-to-r from-light-primary via-light-secondary to-light-accent dark:from-dark-primary dark:via-dark-secondary dark:to-dark-accent bg-clip-text text-transparent" 
           >
             Hey, I'm Shifa
           </motion.h1>
@@ -107,7 +107,7 @@ const Info = () => {
       </section>
 
       {/* My Journey */}
-      <section className="relative py-32 overflow-hidden">
+      <section className="relative py-22 overflow-hidden">
         <div className="max-w-4xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 50 }}

@@ -19,7 +19,7 @@ const LocationMap = () => {
   }, [cursorPos]);
 
   return (
-    <section ref={ref} className="relative py-32 overflow-hidden">
+    <section ref={ref} className="relative py-22 overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-light-accent/5 dark:bg-dark-accent/5 rounded-full blur-3xl" />
       </div>

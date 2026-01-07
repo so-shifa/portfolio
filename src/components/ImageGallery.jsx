@@ -46,16 +46,14 @@ const ImageGallery = () => {
           <p className="text-black/70 dark:text-light-bg/80 max-w-2xl mx-auto">
             A glimpse into my development journey
           </p>
-          <p className="text-sm text-black/60 dark:text-light-bg/60 mt-2">
-            ← Drag to explore →
-          </p>
+         
         </motion.div>
 
         {/* Gallery */}
-        <div className="relative">
+        <div className="relative ">
           <div
             ref={scrollRef}
-            className="flex gap-6 overflow-x-auto pb-8 scrollbar-hide cursor-grab active:cursor-grabbing"
+            className="flex gap-6 overflow-x-auto pb-8 py-10 scrollbar-hide cursor-grab active:cursor-grabbing"
             style={{ scrollbarWidth: "none" }}
           >
             {images.map((image, i) => (
