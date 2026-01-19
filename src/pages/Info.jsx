@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useScrollZoom } from "../hooks/useScrollZoom";
 import Footer from "../components/Footer";
-
+import LocationMap from "../components/LocationMap";
 const Info = () => {
   const scale = useScrollZoom();
 
@@ -76,7 +76,7 @@ const Info = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-6xl md:text-8xl font-bold pb-5 mb-8 bg-gradient-to-r from-light-primary via-light-secondary to-light-accent dark:from-dark-primary dark:via-dark-secondary dark:to-dark-accent bg-clip-text text-transparent" 
+            className="text-6xl md:text-8xl font-bold pb-5 mb-8 bg-gradient-to-r from-light-primary via-light-secondary to-light-accent dark:from-dark-primary dark:via-dark-secondary dark:to-dark-accent bg-clip-text text-transparent"
           >
             Hey, I'm Shifa
           </motion.h1>
@@ -246,7 +246,7 @@ const Info = () => {
       </section> */}
 
       {/* Philosophy */}
-      <section className="relative py-32 overflow-hidden">
+      <section className="relative pb-20 overflow-hidden">
         <div className="max-w-4xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -259,14 +259,15 @@ const Info = () => {
               My Philosophy
             </h2>
             <p className="text-xl text-light-textSecondary dark:text-dark-textSecondary leading-relaxed italic">
-              "Code is poetry. Every component, every function, every line
-              should tell a story. I believe in building experiences that are
-              not just functional, but delightful—where users don't just use the
-              product, they enjoy using it."
+              Build simple things well. Focus on clarity, usability and steady
+              improvement over perfection.
             </p>
           </motion.div>
         </div>
       </section>
+      <div className="pb-20">
+        <LocationMap />
+      </div>
 
       <Footer />
     </div>

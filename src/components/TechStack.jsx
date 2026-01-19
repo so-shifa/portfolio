@@ -1,5 +1,15 @@
 import { motion } from "framer-motion";
 import useScrollAnimation from "../hooks/useScrollAnimation";
+import {
+  SiReact,
+  SiJavascript,
+  SiTailwindcss,
+  SiGit,
+  SiGithub,
+  SiRedux,
+  SiPostman,
+  SiFigma,
+} from "react-icons/si";
 
 const TechStack = () => {
   const { ref, opacity, y } = useScrollAnimation(0.2);
@@ -7,50 +17,42 @@ const TechStack = () => {
   const technologies = [
     {
       name: "React.js",
-      icon: "⚛️",
-      color: "from-blue-400 to-cyan-400",
+      icon: SiReact,
       description: "Component-based UI",
     },
     {
       name: "JavaScript",
-      icon: "📜",
-      color: "from-yellow-400 to-orange-400",
+      icon: SiJavascript,
       description: "Core language",
     },
     {
       name: "Tailwind CSS",
-      icon: "🎨",
-      color: "from-teal-400 to-blue-500",
+      icon: SiTailwindcss,
       description: "Utility-first CSS",
     },
     {
-      name: "Git/GitHub",
-      icon: "🔧",
-      color: "from-gray-400 to-gray-600",
+      name: "Git",
+      icon: SiGit,
       description: "Version control",
     },
     {
-      name: "REST APIs",
-      icon: "🔌",
-      color: "from-green-400 to-emerald-500",
-      description: "Data integration",
+      name: "GitHub",
+      icon: SiGithub,
+      description: "Code hosting",
     },
     {
       name: "Redux",
-      icon: "🗄️",
-      color: "from-purple-400 to-pink-500",
+      icon: SiRedux,
       description: "State management",
     },
     {
       name: "Postman",
-      icon: "📮",
-      color: "from-orange-400 to-red-500",
+      icon: SiPostman,
       description: "API testing",
     },
     {
       name: "Figma",
-      icon: "🎯",
-      color: "from-pink-400 to-rose-500",
+      icon: SiFigma,
       description: "Design tool",
     },
   ];
@@ -81,7 +83,9 @@ const TechStack = () => {
               className="group relative glass p-6 rounded-2xl cursor-pointer"
             >
               <div className="relative z-10 flex flex-col items-center text-center gap-3">
-                <div className="text-5xl">{tech.icon}</div>
+                <div className="text-5xl text-light-primary dark:text-light-accent">
+                  <tech.icon />
+                </div>
                 <h3 className="font-bold">{tech.name}</h3>
                 <p className="text-sm opacity-0 group-hover:opacity-100 transition">
                   {tech.description}
