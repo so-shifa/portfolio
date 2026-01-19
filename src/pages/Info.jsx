@@ -201,7 +201,7 @@ const Info = () => {
       </section>
 
       {/* Education */}
-      <section className="relative py-32 overflow-hidden">
+      {/* <section className="relative py-32 overflow-hidden">
         <div className="max-w-4xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -243,7 +243,7 @@ const Info = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Philosophy */}
       <section className="relative py-32 overflow-hidden">
