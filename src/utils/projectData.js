@@ -1,92 +1,174 @@
 export const projects = [
   {
-    id: 'mindlift',
-    title: 'MindLift',
-    tagline: 'E-Learning Platform',
-    description: 'A comprehensive e-learning platform built with React that provides an intuitive learning experience with course management, user authentication, and seamless payment integration.',
-    longDescription: 'MindLift is a modern e-learning platform designed to revolutionize online education. Built with a focus on user experience, it offers a clean interface for course discovery, enrollment, and learning. The platform features role-based dashboards, secure authentication flows, and integrated payment processing.',
+    id: "mindlift",
+    title: "MindLift",
+    tagline: "E-Learning Platform",
+
+    description:
+      "A comprehensive e-learning platform designed to deliver a smooth and engaging learning experience with structured courses, secure authentication, and seamless user flows.",
+
+    longDescription:
+      "MindLift is a modern e-learning platform built with a strong focus on usability and visual clarity. The interface prioritizes easy course discovery, intuitive navigation, and distraction-free learning. From onboarding to checkout and course progress tracking, every flow was carefully designed to feel natural and responsive.",
+
     features: [
-      'User authentication with protected routes',
-      'Dynamic course listing and filtering',
-      'Enrollment and checkout workflows',
-      'Client-side form validation',
-      'Responsive dashboard with course progress tracking',
-      'REST API integration for real-time data',
+      "Role-based dashboards for learners and instructors",
+      "Protected routes with secure authentication flows",
+      "Dynamic course listing with filters and categories",
+      "Enrollment and checkout experience with validation",
+      "Responsive layouts optimized for all screen sizes",
+      "REST API integration for real-time course data",
     ],
-    techStack: ['React.js', 'Tailwind CSS', 'REST APIs', 'Context API', 'React Router', 'Postman'],
-    challenges: 'Coordinating with backend team to ensure API consistency and handling complex state management across multiple user flows.',
-    role: 'Frontend Lead',
-    timeline: '3 months',
+
+    challenges:
+      "Designing a scalable UI system that could support multiple learning flows while keeping the interface simple and approachable for first-time users.",
+
+    role: "Frontend Lead",
+    timeline: "3 months",
     github: null,
-    image: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&q=80',
+
+    figma: {
+      preview: "/public/projects/mindlift/mindlift_figma.png",
+      link: "https://www.figma.com/design/1vydHx12hayzTd1dIeG43V/Mind-Lift?node-id=0-1&t=u4YnOsc6wmY59zyY-1",
+    },
+
+    media: [
+      { type: "video", src: "/assets/projects/mindlift/demo.mp4" },
+      { type: "image", src: "" },
+      { type: "image", src: "/assets/projects/mindlift/signin.png" },
+      { type: "image", src: "/assets/projects/mindlift/courses.png" },
+    ],
+
+    techStack: [
+      "React.js",
+      "Tailwind CSS",
+      "REST APIs",
+      "Context API",
+      "React Router",
+    ],
   },
+
   {
-    id: 'vidya-sarthi',
-    title: 'Vidya Sarthi',
-    tagline: 'Academic Management System',
-    description: 'A role-based academic management system streamlining administrative tasks for educational institutions with separate interfaces for Admin, Faculty, and Students.',
-    longDescription: 'Vidya Sarthi is an academic management system built to simplify educational administration. With distinct role-based interfaces, it enables administrators to manage faculty and students, faculty to handle coursework and grades, and students to track their academic progress seamlessly.',
+    id: "vidya-sarthi",
+    title: "Vidya Sarthi",
+    tagline: "Academic Management System",
+
+    description:
+      "A role-based academic management system designed to simplify institutional workflows through clearly separated interfaces for administrators, faculty, and students.",
+
+    longDescription:
+      "Vidya Sarthi is an academic management platform focused on clarity, efficiency, and role-specific usability. Each user type interacts with a tailored interface that reduces complexity and highlights only what matters to them, resulting in a smoother administrative and academic experience.",
+
     features: [
-      'Role-based UI for Admin, Faculty, and Student modules',
-      'Protected routes with authentication',
-      'Dynamic data tables with filters and sorting',
-      'Form management for academic workflows',
-      'Real-time data synchronization',
-      'Collaborative development with backend team',
+      "Distinct dashboards for Admin, Faculty, and Students",
+      "Role-based access control with protected routes",
+      "Dynamic data tables with filtering and sorting",
+      "Form-driven academic workflows",
+      "Consistent UI patterns across modules",
+      "API-driven data synchronization",
     ],
-    techStack: ['React.js', 'REST APIs', 'React Hooks', 'Jira', 'Git/GitHub'],
-    challenges: 'Implementing complex role-based access control and ensuring smooth API behavior across different user types.',
-    role: 'Frontend Developer',
-    timeline: '4 months',
+
+    challenges:
+      "Ensuring a consistent design language across multiple role-based interfaces while maintaining performance and usability.",
+
+    role: "Frontend Developer",
+    timeline: "4 months",
     github: null,
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
+
+    figma: {
+      preview: "/assets/projects/vidya-sarthi/figma-preview.png",
+      link: "https://www.figma.com/file/YYYYYY",
+    },
+
+    media: [
+      { type: "video", src: "/assets/projects/vidya-sarthi/demo.mp4" },
+      {
+        type: "image",
+        src: "/assets/projects/vidya-sarthi/admin-dashboard.png",
+      },
+      { type: "image", src: "/assets/projects/vidya-sarthi/student.png" },
+    ],
+
+    techStack: ["React.js", "REST APIs", "React Hooks", "Git/GitHub"],
   },
+
   {
-    id: 'sql-query-runner',
-    title: 'SQL Query Runner',
-    tagline: 'Interactive Database Tool',
-    description: 'An intuitive web-based SQL query interface that allows users to write, execute, and visualize database queries with syntax highlighting and result formatting.',
-    longDescription: 'SQL Query Runner provides a seamless interface for database interaction. Built with modern web technologies, it offers real-time query execution, beautiful result visualization, and developer-friendly features like syntax highlighting.',
+    id: "sql-query-runner",
+    title: "SQL Query Runner",
+    tagline: "Interactive Database Tool",
+
+    description:
+      "A web-based SQL query interface that allows users to write, execute, and visualize database queries in real time.",
+
+    longDescription:
+      "SQL Query Runner is a developer-focused tool designed to make database interaction intuitive and efficient. The interface emphasizes readability, fast feedback, and structured result visualization to improve the querying experience.",
+
     features: [
-      'Real-time SQL query execution',
-      'Syntax highlighting and autocomplete',
-      'Result table visualization',
-      'Query history and favorites',
-      'Export results to CSV/JSON',
+      "Real-time SQL query execution",
+      "Syntax highlighting for improved readability",
+      "Structured result table visualization",
+      "Query history for quick access",
+      "Exportable query results",
     ],
-    techStack: ['React.js', 'Tailwind CSS', 'REST APIs', 'Monaco Editor'],
-    challenges: 'Handling large result sets efficiently and implementing a responsive query editor.',
-    role: 'Solo Developer',
-    timeline: '2 months',
+
+    challenges:
+      "Optimizing performance while rendering large result sets and maintaining a responsive editor experience.",
+
+    role: "Solo Developer",
+    timeline: "2 months",
     github: null,
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
+
+    figma: null,
+
+    media: [
+      { type: "video", src: "/assets/projects/sql/demo.mp4" },
+      { type: "image", src: "/assets/projects/sql/editor.png" },
+    ],
+
+    techStack: ["React.js", "Tailwind CSS", "REST APIs", "Monaco Editor"],
   },
+
   {
-    id: 'terra',
-    title: 'Terra',
-    tagline: 'Environmental Dashboard',
-    description: 'A data visualization platform for environmental metrics, providing real-time insights into climate data, sustainability metrics, and ecological trends.',
-    longDescription: 'Terra is an environmental data platform that brings climate awareness through beautiful visualizations. It aggregates data from multiple sources to provide actionable insights on environmental trends.',
+    id: "terra",
+    title: "Terra",
+    tagline: "Environmental Dashboard",
+
+    description:
+      "A data visualization dashboard that presents environmental and sustainability metrics through clean, interactive visuals.",
+
+    longDescription:
+      "Terra is an environmental data platform designed to communicate complex climate data in a visually accessible way. The dashboard focuses on clarity, contrast, and hierarchy to help users quickly understand trends and insights.",
+
     features: [
-      'Interactive data visualizations',
-      'Real-time climate data integration',
-      'Custom dashboard creation',
-      'Trend analysis and predictions',
-      'Export and share reports',
+      "Interactive charts and visualizations",
+      "Real-time environmental data integration",
+      "Customizable dashboard views",
+      "Trend analysis and data comparison",
+      "Exportable reports and insights",
     ],
-    techStack: ['React.js', 'D3.js', 'Tailwind CSS', 'REST APIs', 'Chart.js'],
-    challenges: 'Creating performant visualizations for large datasets and ensuring responsive design across devices.',
-    role: 'Frontend Developer',
-    timeline: '3 months',
+
+    challenges:
+      "Designing high-performance visualizations that remain smooth and readable across devices.",
+
+    role: "Frontend Developer",
+    timeline: "3 months",
     github: null,
-    image: 'https://images.unsplash.com/photo-1569163139394-de4798aa62b6?w=800&q=80',
+
+    figma: {
+      preview: "/assets/projects/terra/figma-preview.png",
+      link: "https://www.figma.com/file/ZZZZZZ",
+    },
+
+    media: [
+      { type: "video", src: "/assets/projects/terra/demo.mp4" },
+      { type: "image", src: "/assets/projects/terra/overview.png" },
+      { type: "image", src: "/assets/projects/terra/charts.png" },
+    ],
+
+    techStack: ["React.js", "D3.js", "Tailwind CSS", "Chart.js"],
   },
 ];
 
-export const getProjectById = (id) => {
-  return projects.find(project => project.id === id);
-};
+export const getProjectById = (id) =>
+  projects.find((project) => project.id === id);
 
-export const getFeaturedProjects = () => {
-  return projects.slice(0, 2); // Return first 2 projects as featured
-};
+export const getFeaturedProjects = () => projects.slice(0, 2);

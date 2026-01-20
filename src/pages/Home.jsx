@@ -31,7 +31,7 @@ const Home = () => {
       <TechStack />
       <Experience />
       <Projects />
-      <ImageGallery />
+      {/* <ImageGallery /> */}
       <ContactForm />
       <LocationMap />
       <Footer />

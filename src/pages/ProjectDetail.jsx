@@ -1,234 +1,222 @@
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { getProjectById, projects } from "../utils/projectData";
-import Footer from "../components/Footer";
 
 const ProjectDetail = () => {
- const { slug } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
- const project = getProjectById(slug);
+
+  const project = getProjectById(id);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   if (!project) {
     return (
-      <div className="min-h-screen flex items-center justify-center pt-20">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-light-text dark:text-dark-text mb-4">
-            Project Not Found
-          </h1>
-          <button
-            onClick={() => navigate("/")}
-            className="px-6 py-3 glass rounded-full font-medium"
-          >
-            ← Back to Home
-          </button>
-        </div>
+      <div className="h-screen flex items-center justify-center">
+        <p className="opacity-70">Project not found</p>
       </div>
     );
   }
 
- const currentIndex = projects.findIndex((p) => p.id === slug);
+  /* ---------------- MEDIA ---------------- */
+  const media = project.media || [];
+  const activeMedia = media[activeIndex];
+
+  /* ---------------- NEXT PROJECT LOGIC ---------------- */
+  const currentIndex = projects.findIndex((p) => p.id === id);
   const nextProject = projects[(currentIndex + 1) % projects.length];
+  const nextPreview = nextProject.media?.[0];
 
   return (
-    <div className="min-h-screen pt-20">
-      {/* Back Button */}
-      <div className="max-w-6xl mx-auto px-6 py-8">
-        <motion.button
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          onClick={() => navigate("/")}
-          className="flex items-center gap-2 text-light-textSecondary dark:text-dark-textSecondary hover:text-light-primary dark:hover:text-dark-accent transition-colors"
-        >
-          <span>←</span>
-          <span>Back to Home</span>
-        </motion.button>
+    <section className="max-w-7xl mx-auto px-6 py-24">
+      {/* Back */}
+      <Link
+        to="/"
+        className="inline-block mb-10 text-sm opacity-60 hover:opacity-100 transition"
+      >
+        ← Back to Projects
+      </Link>
+
+      {/* Header */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="mb-16"
+      >
+        <h1 className="text-4xl md:text-6xl font-bold mb-4">{project.title}</h1>
+        <p className="max-w-3xl text-lg opacity-70">{project.description}</p>
+      </motion.div>
+
+      {/* Media Section */}
+      <div className="grid lg:grid-cols-[3fr_1fr] gap-10 mb-24">
+        {/* Main Media */}
+        <div className="glass rounded-3xl overflow-hidden">
+          {activeMedia?.type === "video" ? (
+            <video
+              src={activeMedia.src}
+              controls
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <img
+              src={activeMedia?.src}
+              alt={project.title}
+              className="w-full h-full object-cover"
+            />
+          )}
+        </div>
+
+        {/* Thumbnails */}
+        <div className="flex lg:flex-col gap-4 overflow-x-auto lg:overflow-visible">
+          {media.map((item, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveIndex(index)}
+              className={`relative min-w-[120px] aspect-video rounded-xl overflow-hidden transition border ${
+                index === activeIndex
+                  ? "border-light-primary scale-105"
+                  : "border-transparent opacity-70 hover:opacity-100"
+              }`}
+            >
+              {item.type === "video" ? (
+                <video
+                  src={item.src}
+                  muted
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <img
+                  src={item.src}
+                  alt="thumbnail"
+                  className="w-full h-full object-cover"
+                />
+              )}
+            </button>
+          ))}
+        </div>
       </div>
 
-      {/* Hero Section */}
-      <section className="relative py-16 overflow-hidden">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Project Image */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="relative h-96 rounded-3xl overflow-hidden glass"
+      {/* Content */}
+      <div className="grid lg:grid-cols-[2fr_1fr] gap-16">
+        {/* Left */}
+        <div className="space-y-14">
+          <div>
+            <h2 className="text-3xl font-semibold mb-4">Overview</h2>
+            <p className="text-lg leading-relaxed opacity-80">
+              {project.longDescription}
+            </p>
+          </div>
+
+          {project.features?.length > 0 && (
+            <div>
+              <h2 className="text-3xl font-semibold mb-6">Key Features</h2>
+              <ul className="grid sm:grid-cols-2 gap-4">
+                {project.features.map((feature) => (
+                  <li key={feature} className="glass rounded-xl px-5 py-4">
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {project.challenges && (
+            <div>
+              <h2 className="text-3xl font-semibold mb-4">Challenges</h2>
+              <p className="opacity-80 leading-relaxed">{project.challenges}</p>
+            </div>
+          )}
+        </div>
+
+        {/* Sidebar */}
+        <div className="space-y-8">
+          <div className="glass rounded-2xl p-6">
+            <h3 className="font-semibold mb-4">Project Info</h3>
+            <ul className="space-y-2 text-sm opacity-80">
+              {project.role && <li>Role: {project.role}</li>}
+              {project.timeline && <li>Timeline: {project.timeline}</li>}
+            </ul>
+          </div>
+
+          {project.figma && (
+            <a
+              href={project.figma.link}
+              target="_blank"
+              rel="noreferrer"
+              className="group block glass rounded-2xl overflow-hidden"
             >
               <img
-                src={project.image}
-                alt={project.title}
+                src={project.figma.preview}
+                alt="Figma Design"
+                className="h-44 w-full object-cover group-hover:scale-105 transition duration-500"
+              />
+              <div className="p-4 text-sm opacity-80">Open Figma Design →</div>
+            </a>
+          )}
+
+          {project.techStack?.length > 0 && (
+            <div className="glass rounded-2xl p-6">
+              <h3 className="font-semibold mb-4">Tech Stack</h3>
+              <div className="flex flex-wrap gap-2">
+                {project.techStack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-3 py-1 rounded-full text-xs glass"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* 🔥 NEXT PROJECT */}
+      <div className="mt-32">
+        <h2 className="text-3xl font-semibold mb-8">Next Project</h2>
+
+        <motion.div
+          whileHover={{ y: -6 }}
+          onClick={() => navigate(`/projects/${nextProject.id}`)}
+          className="group grid md:grid-cols-2 gap-8 glass rounded-3xl overflow-hidden cursor-pointer"
+        >
+          <div className="h-64 overflow-hidden">
+            {nextPreview?.type === "video" ? (
+              <video
+                src={nextPreview.src}
+                muted
+                autoPlay
+                loop
                 className="w-full h-full object-cover"
               />
-            </motion.div>
-
-            {/* Project Info */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="space-y-6"
-            >
-              <div>
-                <span className="px-3 py-1 glass text-sm font-bold rounded-full text-light-primary dark:text-dark-accent">
-                  {project.role}
-                </span>
-              </div>
-
-              <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-light-primary via-light-secondary to-light-accent dark:from-dark-primary dark:via-dark-secondary dark:to-dark-accent bg-clip-text text-transparent">
-                {project.title}
-              </h1>
-
-              <p className="text-xl text-light-primary dark:text-dark-accent font-medium">
-                {project.tagline}
-              </p>
-
-              <p className="text-lg text-light-textSecondary dark:text-dark-textSecondary leading-relaxed">
-                {project.longDescription}
-              </p>
-
-              <div className="flex items-center gap-4 text-sm text-light-textSecondary dark:text-dark-textSecondary">
-                <span>⏱️ {project.timeline}</span>
-                <span>•</span>
-                <span>👤 {project.role}</span>
-              </div>
-            </motion.div>
+            ) : (
+              <img
+                src={nextPreview?.src}
+                alt={nextProject.title}
+                className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
+              />
+            )}
           </div>
-        </div>
-      </section>
 
-      {/* Tech Stack */}
-      <section className="relative py-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="glass p-8 rounded-3xl"
-          >
-            <h2 className="text-3xl font-bold text-light-text dark:text-dark-text mb-6">
-              Tech Stack
-            </h2>
-            <div className="flex flex-wrap gap-3">
-              {project.techStack.map((tech) => (
-                <span
-                  key={tech}
-                  className="px-4 py-2 bg-light-accent/20 dark:bg-dark-accent/10 border border-light-primary/30 dark:border-dark-primary/30 rounded-full text-sm font-medium text-light-text dark:text-dark-text"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Key Features */}
-      <section className="relative py-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl font-bold text-light-text dark:text-dark-text mb-8">
-              Key Features
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {project.features.map((feature, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                  viewport={{ once: true }}
-                  className="glass p-6 rounded-2xl flex items-start gap-4"
-                >
-                  <span className="text-2xl">✓</span>
-                  <p className="text-light-textSecondary dark:text-dark-textSecondary">
-                    {feature}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Challenges & Solutions */}
-      <section className="relative py-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="glass p-8 rounded-3xl"
-          >
-            <h2 className="text-3xl font-bold text-light-text dark:text-dark-text mb-6">
-              Challenges & Solutions
-            </h2>
-            <p className="text-lg text-light-textSecondary dark:text-dark-textSecondary leading-relaxed">
-              {project.challenges}
+          <div className="p-8 flex flex-col justify-center">
+            <p className="text-sm opacity-60 mb-2">Up Next</p>
+            <h3 className="text-2xl font-bold mb-3">{nextProject.title}</h3>
+            <p className="opacity-70 mb-4 line-clamp-3">
+              {nextProject.description}
             </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Next Project */}
-      <section className="relative py-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl font-bold text-light-text dark:text-dark-text mb-8 text-center">
-              Next Project
-            </h2>
-            <Link to={`/projects/${nextProject.id}`} className="block group">
-              <motion.div
-                whileHover={{ scale: 1.02, y: -5 }}
-                className="glass p-6 rounded-3xl overflow-hidden"
-              >
-                <div className="grid md:grid-cols-3 gap-6 items-center">
-                  <div className="h-48 rounded-2xl overflow-hidden">
-                    <img
-                      src={nextProject.image}
-                      alt={nextProject.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="md:col-span-2">
-                    <h3 className="text-2xl font-bold text-light-text dark:text-dark-text mb-2 group-hover:text-light-primary dark:group-hover:text-dark-accent transition-colors">
-                      {nextProject.title}
-                    </h3>
-                    <p className="text-light-textSecondary dark:text-dark-textSecondary mb-4">
-                      {nextProject.description}
-                    </p>
-                    <div className="flex items-center gap-2 text-light-primary dark:text-dark-accent font-medium">
-                      <span>View Project</span>
-                      <motion.span
-                        animate={{ x: [0, 5, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                      >
-                        →
-                      </motion.span>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      <Footer />
-    </div>
+            <span className="text-light-primary font-medium">
+              View Project →
+            </span>
+          </div>
+        </motion.div>
+      </div>
+    </section>
   );
 };
 

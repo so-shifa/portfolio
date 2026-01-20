@@ -80,8 +80,28 @@ const TechStack = () => {
               transition={{ duration: 0.5, delay: i * 0.08 }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.05, y: -5 }}
-              className="group relative glass p-6 rounded-2xl cursor-pointer"
+              className="group relative glass p-6 rounded-2xl cursor-pointer overflow-hidden"
             >
+              {/* SHINE LAYER */}
+              {/* SHINE LAYER */}
+              <span className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl">
+                <span
+                  className="
+      absolute top-[-20%] left-[-70%]
+      w-[40%] h-[450%]
+      bg-gradient-to-r
+      from-transparent
+      via-white/30
+      to-transparent
+      rotate-12
+      translate-x-0
+      group-hover:translate-x-[420%]
+      transition-transform duration-700 ease-out
+    "
+                />
+              </span>
+
+              {/* CONTENT */}
               <div className="relative z-10 flex flex-col items-center text-center gap-3">
                 <div className="text-5xl text-light-primary dark:text-light-accent">
                   <tech.icon />

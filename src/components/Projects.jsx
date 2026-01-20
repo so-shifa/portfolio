@@ -8,62 +8,76 @@ const Projects = () => {
   const navigate = useNavigate();
 
   return (
-    <section id="projects" ref={ref} className="relative py-10 overflow-hidden">
-      <div className="relative max-w-7xl mx-auto px-6">
+    <section id="projects" ref={ref} className="py-20">
+      <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div style={{ opacity, y }} className="mb-16 text-center">
-          <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-light-primary via-light-secondary to-light-accent dark:from-dark-primary dark:via-dark-secondary dark:to-dark-accent bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-light-primary via-light-secondary to-light-accent bg-clip-text text-transparent">
             Featured Projects
           </h2>
-          <p className="text-black/70 dark:text-light-bg/80 max-w-2xl mx-auto">
-            Showcasing my best work in frontend development
+          <p className="opacity-70 max-w-2xl mx-auto">
+            Selected work focused on UI, interaction, and real-world frontend
+            systems
           </p>
         </motion.div>
 
         {/* Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.slice(0, 2).map((project, i) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -10 }}
-              onClick={() => navigate(`/projects/${project.id}`)}
-              className="group relative glass rounded-3xl overflow-hidden cursor-pointer"
-            >
-              <div className="relative h-64 overflow-hidden">
-                <motion.img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.6 }}
-                />
-              </div>
+        <div className="grid md:grid-cols-2 gap-10">
+          {projects.map((project, i) => {
+            const preview = project.media?.[0];
 
-              <div className="p-6 space-y-4">
-                <h3 className="text-2xl font-bold group-hover:text-light-primary dark:group-hover:text-dark-accent transition-colors">
-                  {project.title}
-                </h3>
-
-                <p className="text-black/70 dark:text-light-bg/80 line-clamp-3">
-                  {project.description}
-                </p>
-
-                <div className="flex items-center gap-2 text-light-primary dark:text-dark-accent font-medium">
-                  <span>View Project</span>
-                  <motion.span
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  >
-                    →
-                  </motion.span>
+            return (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: i * 0.15 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8 }}
+                onClick={() => navigate(`/projects/${project.id}`)}
+                className="group glass rounded-3xl overflow-hidden cursor-pointer"
+              >
+                {/* Media */}
+                <div className="relative h-72 overflow-hidden">
+                  {preview?.type === "video" ? (
+                    <video
+                      src={preview.src}
+                      muted
+                      autoPlay
+                      loop
+                      playsInline
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <img
+                      src={preview?.src}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
+                    />
+                  )}
                 </div>
-              </div>
-            </motion.div>
-          ))}
+
+                {/* Content */}
+                <div className="p-6 space-y-4">
+                  <h3 className="text-2xl font-bold">{project.title}</h3>
+
+                  <p className="opacity-70 line-clamp-3">
+                    {project.description}
+                  </p>
+
+                  <div className="flex items-center gap-2 font-medium text-light-primary">
+                    <span>View Project</span>
+                    <motion.span
+                      animate={{ x: [0, 6, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    >
+                      →
+                    </motion.span>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -121,31 +121,29 @@ const Info = () => {
 
             <div className="space-y-6 text-lg text-light-textSecondary dark:text-dark-textSecondary leading-relaxed">
               <p>
-                My journey into tech began with curiosity about how websites
-                work. What started as tinkering with HTML and CSS evolved into a
-                deep passion for creating seamless digital experiences.
+                I got into web development out of pure curiosity wanting to
+                understand how websites actually work behind the scenes. What
+                started with basic HTML and CSS quickly turned into a genuine
+                interest in building things people enjoy using.
               </p>
 
               <p>
-                During my time at ROBOWAVES, I've had the opportunity to work on
-                real-world projects, collaborating with cross-functional teams
-                to build role-based dashboards and integrate complex REST APIs.
-                This experience has taught me not just about code, but about
-                building solutions that truly matter to users.
+                Over time, I’ve worked on real projects that pushed me to think
+                beyond just writing code. From structuring scalable components
+                to handling data flow and API integrations, I’ve learned how
+                small technical decisions can have a big impact on user
+                experience.
               </p>
 
               <p>
-                I believe in writing clean, maintainable code and staying
-                curious about new technologies. Whether it's implementing a new
-                design system, optimizing performance, or learning the latest
-                React features, I'm always eager to grow and improve.
+                I care a lot about clean, readable code and thoughtful UI. I
+                enjoy refining details, improving performance and making
+                interfaces feel smooth and intuitive not just functional.
               </p>
 
               <p>
-                Beyond coding, I'm passionate about collaborative work
-                environments and Agile methodologies. I love being part of a
-                team where ideas flow freely and everyone is working towards
-                creating something meaningful.
+                I enjoy collaborative workflows where ideas are shaped visually
+                and improved through thoughtful iteration.
               </p>
             </div>
           </motion.div>
