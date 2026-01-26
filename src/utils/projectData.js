@@ -32,7 +32,7 @@ export const projects = [
     },
 
     media: [
-      { type: "video", src: "/assets/projects/mindlift/demo.mp4" },
+      { type: "video", src: "/public/projects/mindlift/MINDLIFT_DEMO_VIDEO.mp4" },
       { type: "image", src: "" },
       { type: "image", src: "/assets/projects/mindlift/signin.png" },
       { type: "image", src: "/assets/projects/mindlift/courses.png" },

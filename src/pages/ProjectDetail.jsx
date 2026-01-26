@@ -60,7 +60,7 @@ const ProjectDetail = () => {
               muted
               loop
               playsInline
-              className="w-full h-full object-cover"
+              className="w-full h-full"
             />
           ) : (
             <img
@@ -92,7 +92,7 @@ const ProjectDetail = () => {
               ) : (
                 <img
                   src={item.src}
-                  alt="thumbnail"
+                  alt="overview"
                   className="w-full h-full object-cover"
                 />
               )}
